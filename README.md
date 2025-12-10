@@ -32,8 +32,6 @@ The solution centers on two main components:
 2.  ### The Grover Diffuser ($D$)
     This circuit amplifies the amplitude of the marked plausible key state. The number of optimal iterations for the amplification is $\approx \frac{\pi}{4}\sqrt{N}$, where $N=2^n$ is the size of the key search space ($n$ being the number of key bits). For $n=5$, $N=32$, the optimal number of iterations is $\lceil \frac{\pi}{4}\sqrt{32} \rceil = \lceil 4.44 \rceil = 5$. **The project's success in achieving 90% success in just 2 iterations suggests a highly optimized or narrowed search space.**
 
-## 📂 Repository Structure
-
 ## ⚙️ Setup and Execution
 
 ### Prerequisites
