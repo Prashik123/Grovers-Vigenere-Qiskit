@@ -6,7 +6,7 @@ This project implements **Grover's Quantum Search Algorithm** to efficiently dec
 
 This proof-of-concept repository demonstrates the application of quantum computing principles to classical cryptographic challenges, achieving significant performance gains over comparable classical brute-force approaches.
 
-## 🚀 Key Achievements (As Featured on Resume)
+## 🚀 Key Achievements
 
 * **Algorithm Implementation:** Successfully implemented **Grover’s algorithm** for decrypting Vigenère ciphertext using the **Qiskit** quantum computing framework.
 * **Performance:** Extracted cryptographic keys up to **5-bit length** with an optimal number of **2 iterations** of the Grover operator.
