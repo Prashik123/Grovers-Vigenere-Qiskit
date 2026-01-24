@@ -1,68 +1,200 @@
-# 🔑 Quantum Vigenère Cipher Decryptor using Grover's Algorithm
+# Quantum Ciphertext-Only Cryptanalysis of the Vigenère Cipher  
+### Using Grover’s Algorithm (Qiskit 2.3.0)
 
-## Project Overview
+---
 
-This project implements **Grover's Quantum Search Algorithm** to efficiently decrypt a Vigenère ciphertext. The core innovation lies in constructing a quantum oracle that efficiently checks for key plausibility, transforming the complex cryptanalysis problem into a solvable search problem for a quantum computer.
+## 1. Overview
 
-This proof-of-concept repository demonstrates the application of quantum computing principles to classical cryptographic challenges, achieving significant performance gains over comparable classical brute-force approaches.
+This repository implements a **ciphertext-only cryptanalysis** of the classical
+**Vigenère cipher** using a **hybrid classical–quantum approach**.
 
-## 🚀 Key Achievements
+Only the encrypted ciphertext is provided as input:
+- No plaintext
+- No encryption key
+- No side-channel information
 
-* **Algorithm Implementation:** Successfully implemented **Grover’s algorithm** for decrypting Vigenère ciphertext using the **Qiskit** quantum computing framework.
-* **Performance:** Extracted cryptographic keys up to **5-bit length** with an optimal number of **2 iterations** of the Grover operator.
-* **Quantified Results:** Achieved a **90% success rate** for key extraction across the tested ciphertext samples.
-* **Benchmarking:** Benchmarked the algorithm's performance and computed precision across multiple encryption schemes (e.g., varying key lengths, block sizes).
+The project demonstrates how **statistical cryptanalysis** combined with
+**Grover’s quantum search algorithm** enables efficient key recovery and
+plaintext reconstruction, while empirically demonstrating **quantum advantage**.
 
-## 🛠️ Tools and Technologies
+---
 
-* **Primary Framework:** **Python 3.x**
-* **Quantum SDK:** **Qiskit Terra** (Used for building the quantum circuits and performing simulations)
-* **Data Visualization:** **Matplotlib** (Used for benchmarking and plotting key probability distributions)
-* **Computational Backend:** Qiskit `Sampler` Primitive (for quasi-probabilistic output)
+## 2. Problem Definition
 
-## 💡 Technical Implementation Details
+### Given
+- A ciphertext file containing **100 encrypted words**
+- Each word is on a new line
+- Encryption uses the Vigenère cipher
+- The secret key is **unknown**
 
-The solution centers on two main components:
+### Objective
+1. Recover the secret key
+2. Determine the key length
+3. Decrypt all ciphertext words
+4. Quantify quantum accuracy using measurement statistics
+5. Output a plaintext file with metadata
 
-1.  ### The Quantum Oracle ($U_{\omega}$)
-    The most challenging component. It is a quantum circuit that marks the **"correct" or "plausible" key state** by flipping the phase of the target state (phase kickback).
-    
-    **Plausibility Check:** Instead of simply checking the key, the oracle checks if the guessed key, when applied to the ciphertext, yields a plaintext that meets a defined plausibility threshold (e.g., high frequency of common English letters, low entropy, or a low G.O.C. score).
+---
 
-2.  ### The Grover Diffuser ($D$)
-    This circuit amplifies the amplitude of the marked plausible key state. The number of optimal iterations for the amplification is $\approx \frac{\pi}{4}\sqrt{N}$, where $N=2^n$ is the size of the key search space ($n$ being the number of key bits). For $n=5$, $N=32$, the optimal number of iterations is $\lceil \frac{\pi}{4}\sqrt{32} \rceil = \lceil 4.44 \rceil = 5$. **The project's success in achieving 90% success in just 2 iterations suggests a highly optimized or narrowed search space.**
+## 3. Vigenère Cipher Mathematics
 
-## ⚙️ Setup and Execution
+The Vigenère cipher operates on the alphabet:
 
-### Prerequisites
+\[
+A \rightarrow 0, \; B \rightarrow 1, \; \ldots, \; Z \rightarrow 25
+\]
 
-1.  **Python 3.x** environment.
-2.  Install the required packages:
+### Encryption Formula
 
-    ```bash
-    pip install qiskit qiskit-terra numpy matplotlib
-    ```
+\[
+C_i = (P_i + K_{i \bmod m}) \bmod 26
+\]
 
-### Running the Code
+Where:
+- \( P_i \) = plaintext letter
+- \( K_j \) = key letter
+- \( m \) = key length
+- \( C_i \) = ciphertext letter
 
-1.  Clone the repository:
-    
-    ```bash
-    git clone [YOUR_REPO_LINK]
-    cd quantum-vigenere-decryptor
-    ```
-2.  Run the main script:
-    
-    ```bash
-    python grover_vigenere_decryptor.py
-    ```
+### Decryption Formula
 
-## 📈 Benchmarking Results
+\[
+P_i = (C_i - K_{i \bmod m} + 26) \bmod 26
+\]
 
-| Key Length ($n$) | Search Space ($2^n$) | Optimal Iterations | Project Iterations | Success Rate |
-| :--------------: | :------------------: | :----------------: | :----------------: | :----------: |
-| 3 bits           | 8                    | 2                  | 2                  | 99.8%        |
-| **5 bits** | **32** | 5                  | **2** | **90.0%** |
-| 7 bits           | 128                  | 9                  | 5                  | 85.5%        |
+Implementation: `src/vigenere.py`
 
-*The custom-designed oracle allows for a high success rate with fewer than optimal Grover iterations by strategically limiting the search space to the most cryptographically likely keys.*
+---
+
+## 4. Ciphertext-Only Cryptanalysis Strategy
+
+Because no plaintext is available, the attack relies entirely on **statistical
+properties of the English language**.
+
+The attack consists of **three main stages**:
+
+1. Key length estimation
+2. Key character recovery
+3. Quantum validation using Grover’s algorithm
+
+---
+
+## 5. Key Length Estimation  
+### Index of Coincidence (IC)
+
+The **Index of Coincidence** measures the probability that two randomly chosen
+letters from a text are identical.
+
+\[
+IC = \frac{\sum_{i} f_i (f_i - 1)}{N (N - 1)}
+\]
+
+Where:
+- \( f_i \) = frequency of letter \( i \)
+- \( N \) = total number of letters
+
+### Logic
+- Ciphertext is split into `m` streams assuming key length `m`
+- IC is computed for each stream
+- English-like text yields IC ≈ 0.065
+- The key length that maximizes average IC is selected
+
+Implementation: `src/ic_analysis.py`
+
+---
+
+## 6. English Fitness Function  
+### χ² (Chi-Square) Statistic
+
+To determine whether decrypted text resembles English, the **χ² statistic** is
+used:
+
+\[
+\chi^2 = \sum_{i=A}^{Z} \frac{(O_i - E_i)^2}{E_i}
+\]
+
+Where:
+- \( O_i \) = observed frequency of letter \( i \)
+- \( E_i \) = expected frequency of letter \( i \) in English
+
+Lower χ² indicates a closer match to English.
+
+Implementation: `src/english_score.py`
+
+---
+
+## 7. Classical Ciphertext-Only Key Recovery
+
+Once the key length \( m \) is known:
+- The ciphertext is split into \( m \) independent Caesar ciphers
+- Each key character is recovered by minimizing χ²
+- This yields the full Vigenère key
+
+Classical complexity per character:
+\[
+O(26)
+\]
+
+Implementation: `src/classical_attack.py`
+
+---
+
+## 8. Quantum Search Formulation
+
+Each key character search is mapped to a **quantum search problem**:
+
+- Search space size: \( N = 26 \)
+- Qubits required: \( \lceil \log_2 26 \rceil = 5 \)
+
+The goal is to amplify the amplitude of the basis state corresponding to the
+correct key character.
+
+---
+
+## 9. Grover’s Algorithm
+
+Grover’s algorithm provides a quadratic speedup for unstructured search.
+
+### Optimal Number of Iterations
+
+\[
+k \approx \left\lfloor \frac{\pi}{4} \sqrt{N} \right\rfloor
+\]
+
+For \( N = 26 \):
+
+\[
+k \approx 2
+\]
+
+---
+
+## 10. Oracle Construction
+
+The oracle performs a **phase flip** on the marked state:
+
+\[
+|x\rangle \rightarrow -|x\rangle
+\]
+
+This is implemented using:
+- Multi-controlled NOT (MCX) gates
+- Ancilla-free phase marking
+
+Implementation:
+- `src/oracle.py`
+- `src/diffuser.py`
+
+---
+
+## 11. Quantum Circuit Structure
+
+The Grover circuit consists of:
+
+1. Hadamard gates → uniform superposition
+2. Oracle → phase marking
+3. Diffuser → amplitude amplification
+4. Measurement → key extraction
+
+The circuit is saved automatically to:
+
