@@ -110,15 +110,9 @@ The χ²-based key recovery step is an **unstructured search**:
 Grover’s algorithm provides a **quadratic speedup** for unstructured search.
 
 Complexity comparison:
-**Classical search complexity:**  
-\[
-O(26)
-\]
+**Classical search complexity:** `O(26)`
 
-**Grover search complexity:**  
-\[
-O(\sqrt{26})
-\]
+**Grover search complexity:** `O(√26)`
 
 
 
