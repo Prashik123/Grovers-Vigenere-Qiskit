@@ -227,7 +227,6 @@ aligned with quantum computing research and internship standards.
 ## Author
 
 Prashik Namdeo Somkuwar  
-Quantum Computing | Cryptanalysis | Qiskit
 
 
 
