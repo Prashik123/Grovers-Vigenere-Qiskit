@@ -38,6 +38,63 @@ The repository implements a **hybrid classical–quantum cryptanalysis pipeline*
 All steps operate strictly under the **ciphertext-only attack model**.
 
 ---
+## Cryptanalysis Pipeline (Visual Flowchart)
+
+```mermaid
+flowchart TB
+
+    %% INPUT BLOCK
+    subgraph INPUT["Input"]
+        A["Ciphertext File<br/>(100 Encrypted Words)<br/>• One word per line<br/>• Unknown key"]
+    end
+
+    %% PREPROCESSING BLOCK
+    subgraph PRE["Preprocessing"]
+        B["Read Ciphertext File<br/>Normalize & Clean Text"]
+    end
+
+    %% KEY LENGTH BLOCK
+    subgraph KL["Key Length Estimation (Classical)"]
+        C["Index of Coincidence (IC)<br/>Friedman Test"]
+        D["Estimated Key Length (m)"]
+    end
+
+    %% CLASSICAL CRYPTANALYSIS BLOCK
+    subgraph CC["Classical Cryptanalysis"]
+        E["Split Ciphertext<br/>into m Streams"]
+        F["Independent Caesar Ciphers"]
+        G["χ² Frequency Analysis<br/>English Scoring"]
+        H["Candidate Key Letters"]
+    end
+
+    %% QUANTUM BLOCK
+    subgraph QC["Quantum Acceleration"]
+        I["Grover Oracle<br/>Mark Correct Key Candidate"]
+        J["Grover Diffuser<br/>Amplitude Amplification"]
+        K["Measurement<br/>Most Probable Key Letter"]
+    end
+
+    %% OUTPUT BLOCK
+    subgraph OUT["Decryption & Output"]
+        L["Recovered Secret Key"]
+        M["Decrypt Ciphertext"]
+        N["Plaintext File Generated<br/>+ Accuracy & Metrics"]
+    end
+
+    %% FLOW CONNECTIONS
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    M --> N
 
 ## Cryptanalytic Logic Used (Ciphertext Only)
 
