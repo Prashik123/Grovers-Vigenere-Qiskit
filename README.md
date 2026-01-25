@@ -38,6 +38,101 @@ The repository implements a **hybrid classical–quantum cryptanalysis pipeline*
 All steps operate strictly under the **ciphertext-only attack model**.
 
 ---
+## Cryptanalysis Pipeline (Visual Flow)
+
+<div align="center">
+
+<div style="border:2px solid #444; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Input</b><br/>
+Ciphertext File<br/>
+(100 Vigenère Encrypted Words)<br/>
+One word per line<br/>
+Unknown key
+</div>
+
+⬇️
+
+<div style="border:2px solid #444; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Preprocessing</b><br/>
+Read file, normalize text,<br/>
+convert characters to numerical form
+</div>
+
+⬇️
+
+<div style="border:2px solid #1f77b4; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Key Length Estimation (Classical)</b><br/>
+Index of Coincidence (IC)<br/>
+Friedman Test
+</div>
+
+⬇️
+
+<div style="border:2px solid #1f77b4; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Estimated Key Length</b><br/>
+m characters
+</div>
+
+⬇️
+
+<div style="border:2px solid #1f77b4; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Ciphertext Splitting</b><br/>
+Split text into m independent streams
+</div>
+
+⬇️
+
+<div style="border:2px solid #1f77b4; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Classical Cryptanalysis</b><br/>
+Reduction to Caesar ciphers<br/>
+χ² frequency analysis (English scoring)
+</div>
+
+⬇️
+
+<div style="border:2px solid #ff7f0e; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Quantum Acceleration</b><br/>
+Grover’s Algorithm<br/>
+Oracle + Diffuser<br/>
+Amplitude amplification
+</div>
+
+⬇️
+
+<div style="border:2px solid #ff7f0e; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Measurement</b><br/>
+Most probable key letter extracted
+</div>
+
+⬇️
+
+<div style="border:2px solid #2ca02c; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Recovered Secret Key</b>
+</div>
+
+⬇️
+
+<div style="border:2px solid #2ca02c; border-radius:12px; padding:14px; width:70%; margin-bottom:10px;">
+<b>Decryption</b><br/>
+Apply Vigenère decryption<br/>
+using recovered key
+</div>
+
+⬇️
+
+<div style="border:2px solid #2ca02c; border-radius:12px; padding:14px; width:70%;">
+<b>Output</b><br/>
+Plaintext file generated<br/>
+Recovered key, key length,<br/>
+quantum accuracy metrics
+</div>
+
+</div>
+
+<p align="center"><i>
+Figure: End-to-end ciphertext-only cryptanalysis pipeline combining classical
+statistical methods with quantum acceleration using Grover’s algorithm.
+</i></p>
 
 ## Cryptanalytic Logic Used (Ciphertext Only)
 
