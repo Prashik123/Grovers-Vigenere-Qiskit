@@ -87,8 +87,8 @@ $\chi^2 = \frac{\sum_i (\text{Observed}_i - \text{Expected}_i)^2}{\text{Expected
 
 
 Where:
-- Observed_i is the observed frequency of letter i
-- Expected_i is the known English frequency
+- $Observed_i$ is the observed frequency of letter i
+- $Expected_i$ is the known English frequency
 
 Logic used in code:
 - Try all 26 possible shifts
