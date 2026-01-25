@@ -52,7 +52,7 @@ $\mathrm{IC} = \frac{\sum_i f_i (f_i - 1)}{N (N - 1)}$
 
 
 Where:
-- f_i is the frequency of letter i
+- $f_i$ is the frequency of letter i
 - N is the total number of letters
 
 Logic used in code:
