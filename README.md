@@ -42,10 +42,7 @@ All steps operate strictly under the **ciphertext-only attack model**.
 
 <div align="center">
 
-<table>
-<tr><td>
-
-<div style="border:1.5px solid #666; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #666; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Input</b><br/>
 Ciphertext File<br/>
 (100 Vigenère Encrypted Words)<br/>
@@ -53,86 +50,83 @@ One word per line<br/>
 Unknown key
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #666; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #666; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Preprocessing</b><br/>
 Read file<br/>
 Normalize text<br/>
 Convert characters to numerical form
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Key Length Estimation (Classical)</b><br/>
 Index of Coincidence (IC)<br/>
 Friedman Test
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Estimated Key Length</b><br/>
 m characters
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Ciphertext Splitting</b><br/>
 Split ciphertext into m independent streams
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #1f77b4; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Classical Cryptanalysis</b><br/>
 Reduction to Caesar ciphers<br/>
 χ² frequency analysis (English scoring)
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #ff7f0e; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #ff7f0e; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Quantum Acceleration</b><br/>
 Grover’s Algorithm<br/>
 Oracle + Diffuser<br/>
 Amplitude amplification
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #ff7f0e; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #ff7f0e; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Measurement</b><br/>
 Most probable key letter extracted
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Recovered Secret Key</b>
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Decryption</b><br/>
 Apply Vigenère decryption<br/>
 using recovered key
 </div>
 
-<p align="center">⬇️</p>
+<br/>⬇️<br/><br/>
 
-<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; text-align:center;">
+<div style="border:1.5px solid #2ca02c; border-radius:12px; padding:12px; width:70%; text-align:center;">
 <b>Output</b><br/>
 Plaintext file generated<br/>
-Recovered key & key length<br/>
+Recovered key, key length<br/>
 Quantum accuracy metrics
 </div>
-
-</td></tr>
-</table>
 
 </div>
 
