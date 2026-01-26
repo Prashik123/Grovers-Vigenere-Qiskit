@@ -147,9 +147,9 @@ approaches unity.
 
 | Approach | Search Complexity |
 |--------|-------------------|
-| Classical brute-force | \( \mathcal{O}(N) \) |
-| Classical cryptanalysis + verification | \( \mathcal{O}(N') \) |
-| Grover’s algorithm | \( \mathcal{O}(\sqrt{N'}) \) |
+| Classical brute-force | $\( \mathcal{O}(N) \)$ |
+| Classical cryptanalysis + verification | $\( \mathcal{O}(N') \)$ |
+| Grover’s algorithm | $\( \mathcal{O}(\sqrt{N'}) \)$ |
 
 Here, $\(N'\)$ represents the reduced keyspace obtained after classical cryptanalysis.
 
@@ -162,8 +162,8 @@ generation. This makes oracle-call complexity the correct metric for comparison.
 
 | Method | Verification Calls |
 |------|---------------------|
-| Classical verification | \( N' \) |
-| Grover’s search | \( \frac{\pi}{4}\sqrt{N'} \) |
+| Classical verification | $\( N' \)$ |
+| Grover’s search | $\( \frac{\pi}{4}\sqrt{N'} \)$ |
 
 This reduction in verification cost constitutes the demonstrated **quantum
 advantage**.
