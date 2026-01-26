@@ -42,9 +42,9 @@ $\[
 Even with cryptanalytic heuristics, the final verification step remains a **search problem**.  
 Grover’s algorithm offers a **provable quadratic speedup**, reducing search complexity to:
 
-\[
+$\[
 \mathcal{O}(\sqrt{N})
-\]
+\]$
 
 This project demonstrates:
 - How quantum algorithms integrate into real cryptanalytic workflows
@@ -102,9 +102,9 @@ Instead, it reduces to a **search problem with an efficiently verifiable solutio
 Grover’s algorithm is therefore the theoretically optimal quantum algorithm for this
 task, offering a **quadratic speedup** over classical search:
 
-\[
+$\[
 \mathcal{O}(N) \;\rightarrow\; \mathcal{O}(\sqrt{N})
-\]
+\]$
 
 This makes Grover’s algorithm the natural choice for accelerating Vigenère
 cryptanalysis in the NISQ era.
@@ -116,26 +116,26 @@ cryptanalysis in the NISQ era.
 Grover’s algorithm can be understood geometrically as a sequence of rotations in a
 two-dimensional subspace spanned by:
 
-- \(|w\rangle\): the superposition of valid keys
-- \(|r\rangle\): the superposition of invalid keys
+- $\(|w\rangle\)$: the superposition of valid keys
+- $\(|r\rangle\)$: the superposition of invalid keys
 
 Starting from a uniform superposition \(|\psi_0\rangle\), each Grover iteration applies:
 1. A **phase oracle**, which flips the phase of valid states
 2. A **diffuser (inversion about the mean)**, which amplifies their amplitudes
 
-After \(k\) iterations, the state evolves as:
+After $\(k\)$ iterations, the state evolves as:
 
-\[
+$\[
 |\psi_k\rangle = \sin((2k + 1)\theta)\,|w\rangle + \cos((2k + 1)\theta)\,|r\rangle
-\]
+\]$
 
 where:
 
-\[
+$\[
 \sin^2(\theta) = \frac{M}{N}
-\]
+\]$
 
-Here, \(M\) is the number of valid keys and \(N\) is the total size of the reduced
+Here, $\(M\)$ is the number of valid keys and \(N\) is the total size of the reduced
 keyspace. The probability of measuring a valid key increases monotonically until it
 approaches unity.
 
@@ -151,7 +151,7 @@ approaches unity.
 | Classical cryptanalysis + verification | \( \mathcal{O}(N') \) |
 | Grover’s algorithm | \( \mathcal{O}(\sqrt{N'}) \) |
 
-Here, \(N'\) represents the reduced keyspace obtained after classical cryptanalysis.
+Here, $\(N'\)$ represents the reduced keyspace obtained after classical cryptanalysis.
 
 ---
 
