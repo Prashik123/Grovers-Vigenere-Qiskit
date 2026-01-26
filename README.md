@@ -35,9 +35,9 @@ Objective:
 ## Motivation
 Classical brute-force attacks on the Vigenère cipher scale exponentially with key length:
 
-\[
+$\[
 \mathcal{O}(26^k)
-\]
+\]$
 
 Even with cryptanalytic heuristics, the final verification step remains a **search problem**.  
 Grover’s algorithm offers a **provable quadratic speedup**, reducing search complexity to:
