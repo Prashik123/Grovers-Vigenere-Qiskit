@@ -61,6 +61,10 @@ This project demonstrates:
 - **Frequency Analysis** – χ² scoring against English letter distributions
 - **Keyspace Reduction** – filters improbable keys before quantum search
 
+
+#### Kasiski Examination
+So one can scan the ciphertext for repeated sequences of length 3 or more, note the distances between their occurrences, and then take the greatest common divisors of those distances. Those divisors are strong candidates for the key length because they reflect the periodicity of the repeating key. In practice, you might find several distances like 24, 36, and 60, whose common divisors are 3, 6, and 12, giving you a shortlist of plausible key lengths.
+
 ### Quantum Algorithms
 - **Grover’s Search Algorithm**
 - **Phase Oracle Construction**
