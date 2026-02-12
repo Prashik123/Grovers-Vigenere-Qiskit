@@ -196,15 +196,9 @@ $$
 ---
 
 ## 4. Grover Phase Oracle
-
 The Grover oracle flips the phase of valid keys:
 
-$$
-\mathcal{O}_{\mathcal{F}} \, |\mathcal{K}\rangle
-=
-(-1)^{\mathcal{F}(\mathcal{K})}
-|\mathcal{K}\rangle
-$$
+$$\mathcal{O}_{\mathcal{F}} \, |\mathcal{K}\rangle = (-1)^{\mathcal{F}(\mathcal{K})} |\mathcal{K}\rangle$$
 
 ### Meaning
 
@@ -217,19 +211,7 @@ $$
 
 Substituting the decision function:
 
-$$
-\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
-=
-(-1)^{
-\left[
-\mathcal{S}\big(
-\mathcal{D}_{\mathcal{K}}(\mathcal{C})
-\big)
-\ge \tau
-\right]
-}
-|\mathcal{K}\rangle
-$$
+$$\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{\left[ \mathcal{S}\big( \mathcal{D}_{\mathcal{K}}(\mathcal{C}) \big) \ge \tau \right]} |\mathcal{K}\rangle$$
 
 ---
 
@@ -237,35 +219,21 @@ $$
 
 For each candidate key $\mathcal{K}$:
 
-1.  **Decrypt ciphertext:**
-    $$\mathcal{P}^{(\mathcal{K})} = \mathcal{D}_{\mathcal{K}}(\mathcal{C})$$
+1. **Decrypt ciphertext:**
+   $\mathcal{P}^{(\mathcal{K})} = \mathcal{D}_{\mathcal{K}}(\mathcal{C})$
 
-2.  **Compute English score:**
-    $$s = \mathcal{S}(\mathcal{P}^{(\mathcal{K})})$$
+2. **Compute English score:**
+   $s = \mathcal{S}(\mathcal{P}^{(\mathcal{K})})$
 
-3.  **Compare with threshold** $\tau$.
+3. **Compare with threshold** $\tau$.
 
-4.  **Apply phase flip** if valid.
+4. **Apply phase flip** if valid.
 
 ---
 
 ## 7. Final Compact Oracle Definition
 
-$$
-\boxed{
-\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
-=
-(-1)^{
-\left[
-\mathcal{S}\big(
-\mathcal{D}_{\mathcal{K}}(\mathcal{C})
-\big)
-\ge \tau
-\right]
-}
-|\mathcal{K}\rangle
-}
-$$
+$$\boxed{ \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{\left[ \mathcal{S}\big( \mathcal{D}_{\mathcal{K}}(\mathcal{C}) \big) \ge \tau \right]} |\mathcal{K}\rangle }$$
 
 ---
 
@@ -273,21 +241,11 @@ $$
 
 For implementable circuits, we often replace the score with specific pattern detection:
 
-$$
-\mathcal{F}(\mathcal{K}) =
-1 \quad \text{if substring "THE" appears in } \mathcal{D}_{\mathcal{K}}(\mathcal{C})
-$$
+$$\mathcal{F}(\mathcal{K}) = 1 \quad \text{if substring "THE" appears in } \mathcal{D}_{\mathcal{K}}(\mathcal{C})$$
 
 Then the oracle becomes:
 
-$$
-\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
-=
-(-1)^{
-[\text{"THE"} \subset \mathcal{D}_{\mathcal{K}}(\mathcal{C})]
-}
-|\mathcal{K}\rangle
-$$
+$$\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{ [\text{"THE"} \subset \mathcal{D}_{\mathcal{K}}(\mathcal{C})] } |\mathcal{K}\rangle$$
 ---
 
 
