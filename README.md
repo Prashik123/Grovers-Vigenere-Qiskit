@@ -63,7 +63,17 @@ This project demonstrates:
 
 
 #### Kasiski Examination
-So one can scan the ciphertext for repeated sequences of length 3 or more, note the distances between their occurrences, and then take the greatest common divisors of those distances. Those divisors are strong candidates for the key length because they reflect the periodicity of the repeating key. In practice, you might find several distances like 24, 36, and 60, whose common divisors are 3, 6, and 12, giving you a shortlist of plausible key lengths.
+One can scan the ciphertext for repeated sequences of length 3 or more, note the distances between their occurrences, and then take the greatest common divisors of those distances. Those divisors are strong candidates for the key length because they reflect the periodicity of the repeating key. In practice, you might find several distances like 24, 36, and 60, whose common divisors are 3, 6, and 12, giving you a shortlist of plausible key lengths.
+
+#### Friedman Test
+It is a statistical way to estimate key length without relying on repeated patterns. The idea is that English text has a characteristic IC around 0.065, whereas uniformly random text has a much lower IC around 0.038. If you assume a key length 𝑘, you split the ciphertext into 𝑘 columns by taking every k-th letter. Each column should behave like a Caesar cipher of English text, so its IC should be close to the English value if your guess for 𝑘 is correct. By computing IC for different candidate lengths and comparing them to the expected English IC, you can estimate the most likely key length. This method is especially useful when the ciphertext is long and pattern repetition is not obvious.
+
+#### Frequency Analysis
+It is used to recover each key character. For a given position in the key, you take the corresponding column of ciphertext letters and treat it as a Caesar-shifted version of English text. For each possible shift from 0 to 25, you “decrypt” that column and compute a χ² (chi-squared) score comparing the observed letter frequencies with known English letter frequencies. The shift that minimizes the χ² score is the most likely key letter for that position. Doing this independently for each column gives you the full key.
+
+#### Keyspace Reduction
+is the idea of using all the above classical insights to drastically reduce the number of candidate keys before doing any exhaustive or quantum search. Instead of searching all 
+$26**k$ possible keys, you keep only those key lengths supported by Kasiski and Friedman, and for each key position you keep only the few shifts that have good χ² scores. This shrinks the search space from astronomically large to something manageable
 
 ### Quantum Algorithms
 - **Grover’s Search Algorithm**
