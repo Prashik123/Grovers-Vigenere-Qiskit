@@ -238,7 +238,6 @@ $$\boxed{ \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{\left[ \mathcal{
 ---
 
 ## 8. Practical Simplified Oracle (Pattern Based)
-
 For implementable circuits, we often replace the score with specific pattern detection:
 
 $$\mathcal{F}(\mathcal{K}) = 1 \quad \text{if substring "THE" appears in } \mathcal{D}_{\mathcal{K}}(\mathcal{C})$$
@@ -246,36 +245,35 @@ $$\mathcal{F}(\mathcal{K}) = 1 \quad \text{if substring "THE" appears in } \math
 Then the oracle becomes:
 
 $$\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{ [\text{"THE"} \subset \mathcal{D}_{\mathcal{K}}(\mathcal{C})] } |\mathcal{K}\rangle$$
----
 
+---
 
 ## Visualization Theory: Amplitude Amplification
 
-Grover’s algorithm can be understood geometrically as a sequence of rotations in a
-two-dimensional subspace spanned by:
+Grover’s algorithm can be understood geometrically as a sequence of rotations in a two-dimensional subspace spanned by:
 
-- $\(|w\rangle\)$: the superposition of valid keys
-- $\(|r\rangle\)$: the superposition of invalid keys
+- $|w\rangle$: the superposition of valid keys
+- $|r\rangle$: the superposition of invalid keys
 
-Starting from a uniform superposition \(|\psi_0\rangle\), each Grover iteration applies:
+
+
+Starting from a uniform superposition $|\psi_0\rangle$, each Grover iteration applies:
 1. A **phase oracle**, which flips the phase of valid states
 2. A **diffuser (inversion about the mean)**, which amplifies their amplitudes
 
-After $\(k\)$ iterations, the state evolves as:
+After $k$ iterations, the state evolves as:
 
-$\[
+$$
 |\psi_k\rangle = \sin((2k + 1)\theta)\,|w\rangle + \cos((2k + 1)\theta)\,|r\rangle
-\]$
+$$
 
 where:
 
-$\[
+$$
 \sin^2(\theta) = \frac{M}{N}
-\]$
+$$
 
-Here, $\(M\)$ is the number of valid keys and \(N\) is the total size of the reduced
-keyspace. The probability of measuring a valid key increases monotonically until it
-approaches unity.
+Here, $M$ is the number of valid keys and $N$ is the total size of the reduced keyspace. The probability of measuring a valid key increases monotonically until it approaches unity.
 
 ---
 
