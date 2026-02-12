@@ -129,59 +129,49 @@ cryptanalysis in the NISQ era.
 
 #  Grover Oracle for Vigenère Cipher Key Search
 
+# Mathematical Definition of the Oracle
+
 ## 1. n-gram Log-Likelihood Score Function
 
 We define an English-likeness score based on n-gram statistics.
 
-<!--<div align="center"> -->
-
-$\[
+$$
 \mathcal{S}_{n\text{-gram}}(\mathcal{P})
-=\sum_{i=0}^{N-n}
-\log \Pr\big(p_i p_{i+1} \dots p_{i+n-1}\big)
-\]$
-
-</div>
+= \sum_{i=0}^{N-n}
+\log \Pr(p_i p_{i+1} \dots p_{i+n-1})
+$$
 
 ### Explanation of Terms
 
-- \( \mathcal{P} = (p_0, p_1, \dots, p_{N-1}) \) is the decrypted plaintext  
-- \( n \) is the size of the n-gram (e.g., 2 = bigram, 3 = trigram)  
-- \( \Pr(p_i p_{i+1} \dots p_{i+n-1}) \) is the probability of that n-gram in English  
-- The sum aggregates log-likelihood across the entire message  
+- $\mathcal{P} = (p_0, p_1, \dots, p_{N-1})$ is the decrypted plaintext.
+- $n$ is the size of the n-gram (e.g., 2 = bigram, 3 = trigram).
+- $\Pr(p_i p_{i+1} \dots p_{i+n-1})$ is the probability of that n-gram in English.
+- The sum aggregates log-likelihood across the entire message.
 
- **Higher score ⇒ more likely valid English plaintext**
+**Higher score $\Rightarrow$ more likely valid English plaintext.**
 
 ---
 
 ## 2. Decryption Function for Vigenère Cipher
 
-Given a key \( \mathcal{K} \) and ciphertext \( \mathcal{C} \), decryption is:
+Given a key $\mathcal{K}$ and ciphertext $\mathcal{C}$, decryption is defined as:
 
-<div align="center">
-
-\[
+$$
 p_i = (c_i - k_{i \bmod m}) \mod 26
-\]
-
-</div>
+$$
 
 ### Where:
 
-- \( \mathcal{C} = (c_0, c_1, \dots, c_{N-1}) \) is ciphertext  
-- \( \mathcal{K} = (k_0, k_1, \dots, k_{m-1}) \) is the key  
-- \( m \) = key length  
-- \( p_i \) = decrypted plaintext character  
+- $\mathcal{C} = (c_0, c_1, \dots, c_{N-1})$ is the ciphertext.
+- $\mathcal{K} = (k_0, k_1, \dots, k_{m-1})$ is the key.
+- $m$ is the key length.
+- $p_i$ is the decrypted plaintext character.
 
-Define the **decryption operator**
+We define the **decryption operator**:
 
-<div align="center">
-
-\[
+$$
 \mathcal{D}_{\mathcal{K}}(\mathcal{C}) = \mathcal{P}^{(\mathcal{K})}
-\]
-
-</div>
+$$
 
 ---
 
@@ -189,23 +179,19 @@ Define the **decryption operator**
 
 We define a Boolean predicate that decides whether a key produces valid English:
 
-<div align="center">
-
-\[
+$$
 \mathcal{F}(\mathcal{K}) =
 \begin{cases}
 1 & \text{if } \mathcal{S}\big(\mathcal{D}_{\mathcal{K}}(\mathcal{C})\big) \ge \tau \\
 0 & \text{otherwise}
 \end{cases}
-\]
-
-</div>
+$$
 
 ### Where:
 
-- \( \mathcal{S}(\cdot) \) is the n-gram score  
-- \( \tau \) is a chosen threshold  
-- Output is **1 for correct key**, 0 otherwise  
+- $\mathcal{S}(\cdot)$ is the n-gram score.
+- $\tau$ is a chosen threshold.
+- Output is **1 for a correct key**, 0 otherwise.
 
 ---
 
@@ -213,21 +199,17 @@ We define a Boolean predicate that decides whether a key produces valid English:
 
 The Grover oracle flips the phase of valid keys:
 
-<div align="center">
-
-\[
+$$
 \mathcal{O}_{\mathcal{F}} \, |\mathcal{K}\rangle
 =
 (-1)^{\mathcal{F}(\mathcal{K})}
 |\mathcal{K}\rangle
-\]
-
-</div>
+$$
 
 ### Meaning
 
-- If key \( \mathcal{K} \) is valid → phase flip \( (-1) \)
-- If invalid → state unchanged  
+- If key $\mathcal{K}$ is valid $\rightarrow$ phase flip $(-1)$.
+- If invalid $\rightarrow$ state unchanged.
 
 ---
 
@@ -235,9 +217,7 @@ The Grover oracle flips the phase of valid keys:
 
 Substituting the decision function:
 
-<div align="center">
-
-\[
+$$
 \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
 =
 (-1)^{
@@ -249,37 +229,29 @@ Substituting the decision function:
 \right]
 }
 |\mathcal{K}\rangle
-\]
-
-</div>
+$$
 
 ---
 
 ## 6. Complete Logical Flow of the Oracle
 
-For each candidate key \( \mathcal{K} \):
+For each candidate key $\mathcal{K}$:
 
-1. Decrypt ciphertext  
-   \[
-   \mathcal{P}^{(\mathcal{K})} = \mathcal{D}_{\mathcal{K}}(\mathcal{C})
-   \]
+1.  **Decrypt ciphertext:**
+    $$\mathcal{P}^{(\mathcal{K})} = \mathcal{D}_{\mathcal{K}}(\mathcal{C})$$
 
-2. Compute English score  
-   \[
-   s = \mathcal{S}(\mathcal{P}^{(\mathcal{K})})
-   \]
+2.  **Compute English score:**
+    $$s = \mathcal{S}(\mathcal{P}^{(\mathcal{K})})$$
 
-3. Compare with threshold \( \tau \)
+3.  **Compare with threshold** $\tau$.
 
-4. Apply phase flip if valid  
+4.  **Apply phase flip** if valid.
 
 ---
 
 ## 7. Final Compact Oracle Definition
 
-<div align="center">
-
-\[
+$$
 \boxed{
 \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
 =
@@ -293,41 +265,29 @@ For each candidate key \( \mathcal{K} \):
 }
 |\mathcal{K}\rangle
 }
-\]
-
-</div>
+$$
 
 ---
 
 ## 8. Practical Simplified Oracle (Pattern Based)
 
-For implementable circuits, we often replace the score with pattern detection:
+For implementable circuits, we often replace the score with specific pattern detection:
 
-<div align="center">
-
-\[
+$$
 \mathcal{F}(\mathcal{K}) =
 1 \quad \text{if substring "THE" appears in } \mathcal{D}_{\mathcal{K}}(\mathcal{C})
-\]
-
-</div>
+$$
 
 Then the oracle becomes:
 
-<div align="center">
-
-\[
+$$
 \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle
 =
 (-1)^{
 [\text{"THE"} \subset \mathcal{D}_{\mathcal{K}}(\mathcal{C})]
 }
 |\mathcal{K}\rangle
-\]
-
-</div>
-
-
+$$
 ---
 
 
