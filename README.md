@@ -73,7 +73,9 @@ It is used to recover each key character. For a given position in the key, you t
 
 #### Keyspace Reduction
 is the idea of using all the above classical insights to drastically reduce the number of candidate keys before doing any exhaustive or quantum search. Instead of searching all 
-$26**k$ possible keys, you keep only those key lengths supported by Kasiski and Friedman, and for each key position you keep only the few shifts that have good χ² scores. This shrinks the search space from astronomically large to something manageable
+$\[
+\mathcal26^k
+\]$ possible keys, you keep only those key lengths supported by Kasiski and Friedman, and for each key position you keep only the few shifts that have good χ² scores. This shrinks the search space from astronomically large to something manageable
 
 ### Quantum Algorithms
 - **Grover’s Search Algorithm**
