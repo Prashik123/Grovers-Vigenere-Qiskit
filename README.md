@@ -150,7 +150,6 @@ $$
 
 **Higher score $\Rightarrow$ more likely valid English plaintext.**
 
----
 
 ## 2. Decryption Function for Vigenère Cipher
 
@@ -173,7 +172,7 @@ $$
 \mathcal{D}_{\mathcal{K}}(\mathcal{C}) = \mathcal{P}^{(\mathcal{K})}
 $$
 
----
+
 
 ## 3. English-Validity Decision Function
 
@@ -193,7 +192,7 @@ $$
 - $\tau$ is a chosen threshold.
 - Output is **1 for a correct key**, 0 otherwise.
 
----
+
 
 ## 4. Grover Phase Oracle
 The Grover oracle flips the phase of valid keys:
@@ -205,7 +204,7 @@ $$\mathcal{O}_{\mathcal{F}} \, |\mathcal{K}\rangle = (-1)^{\mathcal{F}(\mathcal{
 - If key $\mathcal{K}$ is valid $\rightarrow$ phase flip $(-1)$.
 - If invalid $\rightarrow$ state unchanged.
 
----
+
 
 ## 5. Full Oracle Expression (Expanded)
 
@@ -213,7 +212,7 @@ Substituting the decision function:
 
 $$\mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{\left[ \mathcal{S}\big( \mathcal{D}_{\mathcal{K}}(\mathcal{C}) \big) \ge \tau \right]} |\mathcal{K}\rangle$$
 
----
+
 
 ## 6. Complete Logical Flow of the Oracle
 
@@ -229,13 +228,11 @@ For each candidate key $\mathcal{K}$:
 
 4. **Apply phase flip** if valid.
 
----
 
 ## 7. Final Compact Oracle Definition
 
 $$\boxed{ \mathcal{O}_{\mathcal{F}} |\mathcal{K}\rangle = (-1)^{\left[ \mathcal{S}\big( \mathcal{D}_{\mathcal{K}}(\mathcal{C}) \big) \ge \tau \right]} |\mathcal{K}\rangle }$$
 
----
 
 ## 8. Practical Simplified Oracle (Pattern Based)
 For implementable circuits, we often replace the score with specific pattern detection:
