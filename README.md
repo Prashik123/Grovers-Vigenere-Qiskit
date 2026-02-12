@@ -35,16 +35,16 @@ Objective:
 ## Motivation
 Classical brute-force attacks on the Vigenère cipher scale exponentially with key length:
 
-$\[
+$\
 \mathcal{O}(26^k)
-\]$
+\$
 
 Even with cryptanalytic heuristics, the final verification step remains a **search problem**.  
 Grover’s algorithm offers a **provable quadratic speedup**, reducing search complexity to:
 
-$\[
+$\
 \mathcal{O}(\sqrt{N})
-\]$
+\$
 
 This project demonstrates:
 - How quantum algorithms integrate into real cryptanalytic workflows
@@ -73,9 +73,9 @@ It is used to recover each key character. For a given position in the key, you t
 
 #### Keyspace Reduction
 is the idea of using all the above classical insights to drastically reduce the number of candidate keys before doing any exhaustive or quantum search. Instead of searching all 
-$\[
+$\
 \mathcal26^k
-\]$ possible keys, you keep only those key lengths supported by Kasiski and Friedman, and for each key position you keep only the few shifts that have good χ² scores. This shrinks the search space from astronomically large to something manageable
+\$ possible keys, you keep only those key lengths supported by Kasiski and Friedman, and for each key position you keep only the few shifts that have good χ² scores. This shrinks the search space from astronomically large to something manageable
 
 ### Quantum Algorithms
 - **Grover’s Search Algorithm**
