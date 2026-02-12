@@ -118,9 +118,9 @@ Instead, it reduces to a **search problem with an efficiently verifiable solutio
 Grover’s algorithm is therefore the theoretically optimal quantum algorithm for this
 task, offering a **quadratic speedup** over classical search:
 
-$$\[
+$\[
 \mathcal{O}(N) \;\rightarrow\; \mathcal{O}(\sqrt{N})
-]\$$
+]\$
 
 This makes Grover’s algorithm the natural choice for accelerating Vigenère
 cryptanalysis in the NISQ era.
@@ -133,7 +133,7 @@ cryptanalysis in the NISQ era.
 
 We define an English-likeness score based on n-gram statistics.
 
-<div align="center">
+<!--<div align="center"> -->
 
 $\[
 \mathcal{S}_{n\text{-gram}}(\mathcal{P})
