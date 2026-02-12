@@ -135,12 +135,11 @@ We define an English-likeness score based on n-gram statistics.
 
 <div align="center">
 
-\[
+$\[
 \mathcal{S}_{n\text{-gram}}(\mathcal{P})
-=
-\sum_{i=0}^{N-n}
+=\sum_{i=0}^{N-n}
 \log \Pr\big(p_i p_{i+1} \dots p_{i+n-1}\big)
-\]
+\]$
 
 </div>
 
