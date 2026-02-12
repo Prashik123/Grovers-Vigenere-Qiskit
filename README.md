@@ -42,9 +42,9 @@ $\[
 Even with cryptanalytic heuristics, the final verification step remains a **search problem**.  
 Grover’s algorithm offers a **provable quadratic speedup**, reducing search complexity to:
 
-$\
+$\[
 \mathcal{O}(\sqrt{N})
-\$
+]\$
 
 This project demonstrates:
 - How quantum algorithms integrate into real cryptanalytic workflows
@@ -118,9 +118,9 @@ Instead, it reduces to a **search problem with an efficiently verifiable solutio
 Grover’s algorithm is therefore the theoretically optimal quantum algorithm for this
 task, offering a **quadratic speedup** over classical search:
 
-$\[
+$$\[
 \mathcal{O}(N) \;\rightarrow\; \mathcal{O}(\sqrt{N})
-\]$
+]\$$
 
 This makes Grover’s algorithm the natural choice for accelerating Vigenère
 cryptanalysis in the NISQ era.
