@@ -1,4 +1,4 @@
-# Quantum Ciphertext-Only Cryptanalysis of the Vigenère Cipher 
+# Quantum Ciphertext-Only Cryptanalysis of the Vigenère Cipher
 Using Grover’s Algorithm (Qiskit 2.3.0)
 
 ---
